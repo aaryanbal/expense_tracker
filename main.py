@@ -1,4 +1,6 @@
 expenses = []
+total = 0
+
 
 while True:
     price = float(input("How much did you pay for this purchase: "))
@@ -11,8 +13,19 @@ while True:
     if (again == "no"):
         break
 
+
+print("Your expenses: ")
 for purchase in expenses:
-    print(purchase)
+    print(purchase["item"], purchase["price"], purchase["category"])
+
+
+
+print("Your total expenses: ")
+for purchase in expenses:
+    total += purchase["price"]
+print(round(total, 2))
+
+
 
 
 
