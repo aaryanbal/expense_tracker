@@ -1,3 +1,6 @@
+import json
+
+
 expenses = []
 total = 0
 
@@ -9,26 +12,22 @@ while True:
     purchase = {"price": price, "item": item, "category": category}
     expenses.append(purchase)
     again = input("Do you want to make another purchase(yes or no): ")
+    corrected_input = again.strip().lower()
     
-    if (again == "no"):
+    if (corrected_input == "no"):
         break
 
 
-print("Your expenses: ")
-for purchase in expenses:
-    print(purchase["item"], purchase["price"], purchase["category"])
+with open("expenses.json", "w") as file:
+    json.dump(expenses, file)
 
 
+    print("Your expenses: ")
+    for purchase in expenses:
+        print(purchase["item"],f"${purchase["price"]}", purchase["category"])
 
-print("Your total expenses: ")
+
 for purchase in expenses:
     total += purchase["price"]
-print(round(total, 2))
+print(f"Your total expenses are: ${round(total, 2)}")
 
-
-
-
-
-
-    
-    
